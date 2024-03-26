@@ -51,12 +51,6 @@ public class AddTwoNumbers {
 		ListNode dummyHead = new ListNode(0);
 		ListNode current = dummyHead;
 
-		if (number < 0) {
-			current.next = new ListNode(-1);
-			current = current.next;
-			number = -number;
-		}
-
 		if (number == 0) {
 			current.next = new ListNode(0);
 			return dummyHead.next;
@@ -64,19 +58,33 @@ public class AddTwoNumbers {
 
 		while (number > 0) {
 			int digit = number % 10;
-			current.next = new ListNode(digit);
-			current = current.next;
+			ListNode newNode = new ListNode(digit);
+			newNode.next = current.next;
+			current.next = newNode;
 			number /= 10;
 		}
 		return dummyHead.next;
 	}
 
 	public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-		int num1 = listToNumber(l1);
-		int num2 = listToNumber(l2);
-		int res = num1 + num2;
-		ListNode numHead = numberToList(res);
-		return numHead;
+		ListNode dummyHead = new ListNode(0);
+		ListNode p = l1, q = l2, current = dummyHead;
+		int carry = 0;
+
+		while (p != null || q != null) {
+			int x = (p != null) ? p.val : 0;
+			int y = (q != null) ? q.val : 0;
+			int sum = carry + x + y;
+			
+			carry = sum / 10;
+			current.next = new ListNode(sum % 10);
+			current = current.next;
+			if (p != null) p = p.next;
+			if (q != null) q = q.next;
+		}
+		if (carry > 0)
+			current.next = new ListNode(carry);
+		return dummyHead.next;
 	}
 	
 	public static void main(String[] args) {
@@ -90,13 +98,7 @@ public class AddTwoNumbers {
 		ListNode node1_a = new ListNode(3, node2_a);
 		traverseLinkedList(node1_a);
 
-		int num1 = listToNumber(node1);
-		int num2 = listToNumber(node1_a);
-		int res = num1 + num2;
-		System.out.println(num1 + " " + num2 + " Res: " + res);
-
-		ListNode numHead = numberToList(res);
-		traverseLinkedList(numHead);
-
+		ListNode res = addTwoNumbers(node1, node1_a);
+		traverseLinkedList(res);
 	}
 }
