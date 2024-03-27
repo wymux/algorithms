@@ -13,17 +13,16 @@ public class AddTwoNumbers {
 	private static class ListNode {
 		int val;
 		ListNode next;
-		ListNode() {}
+		ListNode() {};
 		ListNode(int val) {
 			this.val = val;
 		}
-		
 		ListNode(int val, ListNode next) {
 			this.val = val;
 			this.next = next;
 		}
-
 	}
+	
 
 	public static void traverseLinkedList(ListNode head) {
 		ListNode current = head;
@@ -33,37 +32,6 @@ public class AddTwoNumbers {
 			current = current.next;
 		}
 		System.out.println();
-	}
-
-
-	public static int listToNumber(ListNode head) {
-		int number = 0;
-		ListNode current = head;
-		while (current != null) {
-			number = number * 10 + current.val;
-			current = current.next;
-		}
-
-		return number;
-	}
-	
-	public static ListNode numberToList(int number) {
-		ListNode dummyHead = new ListNode(0);
-		ListNode current = dummyHead;
-
-		if (number == 0) {
-			current.next = new ListNode(0);
-			return dummyHead.next;
-		}
-
-		while (number > 0) {
-			int digit = number % 10;
-			ListNode newNode = new ListNode(digit);
-			newNode.next = current.next;
-			current.next = newNode;
-			number /= 10;
-		}
-		return dummyHead.next;
 	}
 
 	public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
