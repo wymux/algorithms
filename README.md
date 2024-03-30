@@ -1,10 +1,10 @@
 # Algorithms Mastered
 
-* Sort
-** Insertion
-** Selection
-** Merge
-** Quicksort
+## Sort
+* Insertion
+* Selection
+* Merge
+* Quicksort
 
 # Solved Leetcode problems
 
