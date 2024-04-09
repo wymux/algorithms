@@ -61,6 +61,19 @@ public class Main {
 		arr[i] = arr[j];
 		arr[j] = tmp;
 	}
+	
+	public static void traverseArray(int[] a) {
+		System.out.print("arr: ");
+		for (int num: a)
+			System.out.print(num + " ");
+		System.out.print("\n");
+	}
 
-	public static void main(String[] args) {}
+
+	public static void main(String[] args) {
+		int[] arr = {9, 8, 7, 6, 5, 4, 3, 2, 1};
+		sort(arr);
+		traverseArray(arr);
+	}
+	
 }
